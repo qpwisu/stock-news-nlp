@@ -1,8 +1,8 @@
 csvFile/
-.csv
 KLT2000/
 KoNLTKtest/
 word_embedding/
-.txt
-.model
-.npy
+*.txt
+*.model
+*.npy
+*.csv
