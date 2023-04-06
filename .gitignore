@@ -1,4 +1,5 @@
 csvFile/
+dataFile/
 KLT2000/
 KoNLTKtest/
 word_embedding/
@@ -6,3 +7,4 @@ word_embedding/
 *.model
 *.npy
 *.csv
+*.pkl
