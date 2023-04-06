@@ -4,7 +4,7 @@ import sys
 
 def wv_KMA_tokens_train():
 
-    filename = "news_crawling-mecab.txt"
+    filename = "dataFile/KCC_news_mecab.txt"
     f = open(filename, "r", encoding='utf-8')
     # f = open(filename, "r", encoding='cp949')
     text = f.readlines()
@@ -18,9 +18,9 @@ def wv_KMA_tokens_train():
     # vector_size = 벡터 차원, window = 훈랸시 앞 뒤로 고려하는 단어 수, min_count : 해당 빈도수보다 작게 등장하면 배제, worker : 스레드 갯수 지정
     model = word2vec.Word2Vec(sentences=tokens, vector_size=300, window=5, min_count=2, workers=4)
 
-    model_file = 'word2vec-' + filename[:-4] + '.model'
+    model_file = 'dataFile/word2vec-KCC_news_mecab.model'
     model.save(model_file)
-    print(f"--> Model file <{model_file}> was created!\n")
+    print(f"--> Model file <KCC_news_mecab> was created!\n")
     return model
 
 

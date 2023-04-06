@@ -25,26 +25,27 @@ def search_relation_stock(model,company_name):
         except:
             stock_df.iloc[i,1] = -99
 
-    print(stock_df.sort_values("similarity",ascending=False))
+    print(stock_df.sort_values("similarity",ascending=False).head(5))
 if __name__ == "__main__":
     # if len(sys.argv) < 2:
     #     print("C> wv_test.py word2vec.model")
     #     exit()
     # print("\nLoading Korean word embedding vectors for 'KMA tokenized text file'.\n")
     # model_name = sys.argv[1]  # Word2Vec model -- 'word2vec-kowiki.model'
-    model_name = "word2vec-news_crawling-mecab.model"
+    model_name = "word2vec-news_mecab.model"
 
     model = Word2Vec.load(model_name)
 
     # print(model.wv.get_vector(u'배우'))
     # print(model.wv.get_vector(u'여배우'))
     #
-    print(model.wv.similarity(u'LG', u'SK하이닉스'))
-    print(model.wv.similarity(u'카카오', u'카카오뱅크'))
-    print(model.wv.similarity(u'카카오페이', u'카카오뱅크'))
-    print(model.wv.similarity(u'카카오', u'삼성전자'))
-    print(model.wv.similarity(u'현대차', u'기아'))
-    # search_relation_stock(model,"삼성전자")
+    # print(model.wv.similarity(u'LG', u'SK하이닉스'))
+    # print(model.wv.similarity(u'카카오', u'카카오뱅크'))
+    # print(model.wv.similarity(u'카카오페이', u'카카오뱅크'))
+    # print(model.wv.similarity(u'카카오', u'삼성전자'))
+    # print(model.wv.similarity(u'현대차', u'기아'))
+    print("한미약품 관련 종목")
+    search_relation_stock(model,"한미약품")
     # search_relation_stock(model,"반도체")
 
 
@@ -52,6 +53,6 @@ if __name__ == "__main__":
     # print(model.wv.similarity(u'배우', u'남자'))
     # print(model.wv.similarity(u'남자', u'여배우'))
 
-    print(model.wv.most_similar(positive=[u'카카오'], topn=3))
-    print(model.wv.most_similar(positive=[u'현대차', u'기아'],  topn=3))
-    print(model.wv.most_similar(positive=[u'현대차', u'기아'], negative=[u'카카오'], topn=3))
+    # print(model.wv.most_similar(positive=[u'카카오'], topn=3))
+    # print(model.wv.most_similar(positive=[u'현대차', u'기아'],  topn=3))
+    # print(model.wv.most_similar(positive=[u'현대차', u'기아'], negative=[u'카카오'], topn=3))
