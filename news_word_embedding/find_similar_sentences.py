@@ -1,4 +1,4 @@
-# python find_similar_sentences.py word2vec-news-mecab.model sentence_vectors.pkl
+# python find_similar_sentences.py dataFile/word2vec-KCC_news_mecab.model dataFile/sentence_vectors.pkl
 from gensim.models import Word2Vec
 import sys
 import numpy as np
@@ -48,7 +48,7 @@ if __name__=="__main__":
     target_idx = 2
     n = 5
 
-    with open('news_sentence-mecab.txt', 'r', encoding='utf8') as f:
+    with open('dataFile/KCC_news_mecab.txt', 'r', encoding='utf8') as f:
         while True:
             line = f.readline().strip()
             if not line:

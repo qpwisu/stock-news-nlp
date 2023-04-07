@@ -1,5 +1,4 @@
-# generate_sentence_vectors.py 'word2vec-news_mecab.model' 'news_senetence_mecab.txt'
-
+# python generate_sentence_vectors.py 'dataFile/word2vec-KCC_news_mecab.model' 'dataFile/KCC_news_mecab.txt'
 from gensim.models import Word2Vec
 from sklearn.metrics.pairwise import cosine_similarity
 import sys

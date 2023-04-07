@@ -32,7 +32,7 @@ if __name__ == "__main__":
     #     exit()
     # print("\nLoading Korean word embedding vectors for 'KMA tokenized text file'.\n")
     # model_name = sys.argv[1]  # Word2Vec model -- 'word2vec-kowiki.model'
-    model_name = "word2vec-news_mecab.model"
+    model_name = "dataFile/word2vec-KCC_news_mecab.model"
 
     model = Word2Vec.load(model_name)
 
@@ -44,8 +44,9 @@ if __name__ == "__main__":
     # print(model.wv.similarity(u'카카오페이', u'카카오뱅크'))
     # print(model.wv.similarity(u'카카오', u'삼성전자'))
     # print(model.wv.similarity(u'현대차', u'기아'))
-    print("한미약품 관련 종목")
-    search_relation_stock(model,"한미약품")
+    # print("한미약품 관련 종목")
+    # search_relation_stock(model,"커피")
+    print(model.wv.most_similar('카카오'))
     # search_relation_stock(model,"반도체")
 
 
