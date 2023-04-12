@@ -7,7 +7,7 @@ from numpy import dot
 from numpy.linalg import norm
 from collections import defaultdict
 from tqdm import tqdm
-
+import pandas as pd
 def calculate_cosine_similarity(a, b):
     return dot(a, b)/(norm(a)*norm(b))
 
@@ -26,9 +26,12 @@ def find_similar_sentences(model, idx, sentence_vectors, raw_sentences, n):
         similarity_list.append((i, similarity))
     
     similarity_list.sort(key=lambda x: x[1], reverse=True)
+    if not similarity_list:
+        return similar_sentences
     print(similarity_list[:n])
     # 유사도 높은 순서대로 raw sentence와 맵핑
     for i in range(n):
+
         _idx, similarity = similarity_list[i]
         raw_sentence = raw_sentences[_idx]
         similar_sentences.append([raw_sentence, similarity])
@@ -48,20 +51,34 @@ if __name__=="__main__":
     target_idx = 2
     n = 5
 
-    with open('dataFile/KCC_news_mecab.txt', 'r', encoding='utf8') as f:
-        while True:
-            line = f.readline().strip()
-            if not line:
-                break
-            raw_sentences.append(line)
-    
+    filename = "dataFile/KCC150_Korean_sentences_utf_8.txt"
+    f = open(filename, "r", encoding='utf-8')
+    text = f.readlines()
+    f.close()
+    for sent in text:
+        # if sent == "":
+        #     continue
+        raw_sentences.append(sent.strip())
+
+    sentences2 = []
+    filename = "dataFile/KCC150_Korean_sentences_utf_8.txt"
+    f = open(filename, "r", encoding='utf-8')
+    text = f.readlines()
+    f.close()
+    for sent in text:
+        sentences2.append(sent.strip())
+
+
     with open(vector_file, 'rb') as f:
         sentence_vectors = pickle.load(f)
-
     print('Successfully loaded sentence vectors!')
 
-    for idx in range(20):
+    for idx in range(4400,4420):
+        print(idx)
         similarity_sentences = find_similar_sentences(model, idx, sentence_vectors, raw_sentences, n)
+        if len(similarity_sentences) == 0:
+            continue
+        print("원본 문장 - 형태소 분석 전: ",sentences2[idx])
         print("원본 문장: ", raw_sentences[idx])
         for i in range(n):
             print("--> ", similarity_sentences[i])

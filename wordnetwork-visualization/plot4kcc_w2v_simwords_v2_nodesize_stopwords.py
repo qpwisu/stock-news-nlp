@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# python plot4kcc_w2v_simwords_v2_nodesize_stopwords.py 삼성전자 no cyan 5 5
 """
 An example using Graph as a weighted network.
 """
@@ -147,7 +148,8 @@ if __name__ == "__main__":
 				print("C> test.py 행복 yes skyblue 4 10")
 
 #		model_name = "D:/KCC_word2vec/model/FastText-KCC150.model"
-		model_name = "word2vec-KCC150.model"
+		# model_name = "word2vec-KCC150.model"
+		model_name = "../news_word_embedding/dataFile/word2vec-KCC_news_mecab.model"
 		# model_name = "word2vec-news_mecab.model"
 		print('Loading word2vec model -- %s' %(model_name))
 		model = Word2Vec.load(model_name)

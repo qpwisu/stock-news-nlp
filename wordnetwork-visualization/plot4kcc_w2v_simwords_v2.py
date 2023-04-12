@@ -180,7 +180,8 @@ if __name__ == "__main__":
 				print("C> test.py 행복 skyblue 4 10")
 
 #		model_name = "D:/KCC_word2vec/model/FastText-KCC150.model"
-		model_name = "word2vec-KCC150.model"
+		# model_name = "word2vec-KCC150.model"
+		model_name = "../news_word_embedding/dataFile/word2vec-KCC_news_mecab.model"
 
 		# model_name = "word2vec-news_mecab.model"
 		print('Loading word2vec model -- %s' %(model_name))

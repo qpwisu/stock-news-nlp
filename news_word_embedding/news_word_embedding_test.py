@@ -45,8 +45,8 @@ if __name__ == "__main__":
     # print(model.wv.similarity(u'카카오', u'삼성전자'))
     # print(model.wv.similarity(u'현대차', u'기아'))
     # print("한미약품 관련 종목")
-    # search_relation_stock(model,"커피")
-    print(model.wv.most_similar('카카오'))
+    search_relation_stock(model,"삼성전자")
+    # print(model.wv.most_similar('카카오'))
     # search_relation_stock(model,"반도체")
 
 

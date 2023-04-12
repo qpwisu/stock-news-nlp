@@ -34,10 +34,7 @@ if __name__=="__main__":
     sentence_vectors = []
 
     with open(text_file, 'r', encoding='utf8') as f:
-        while True:
-            line = f.readline().strip()
-            if not line:
-                break
+        for line in f:
             sentence_vector = generate_word2vec(model, line)
             sentence_vectors.append(sentence_vector)
     print('Successfully generated sentence vectors!')
