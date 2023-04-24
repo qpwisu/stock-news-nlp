@@ -89,7 +89,7 @@ def crawling_stock_news_page(s_date,e_date): # 한달에 1시간 20분 걸리던
             company_list[i].append(max_page)
         df = pd.DataFrame(company_list, columns=["ticker", "company_name", "start_date", "end_date", "max_page"])
 
-        if not os.path.exists('max_page.csv'):
+        if not os.path.exists('../csvFile/max_page.csv'):
             df.to_csv('max_page.csv', index=False, mode='w', encoding='utf-8-sig')
         else:
             df.to_csv('max_page.csv', index=False, mode='a', encoding='utf-8-sig', header=False)
@@ -97,7 +97,7 @@ def crawling_stock_news_page(s_date,e_date): # 한달에 1시간 20분 걸리던
 # 0~ 마지막 페이지를 url로 생성
 def get_url(s_date,e_date):
     tmp_li = []
-    df = pd.read_csv("max_page.csv")
+    df = pd.read_csv("../csvFile/max_page.csv")
     start_date = datetime.strptime(s_date, "%Y%m%d").strftime("%Y.%m.%d")
     end_date = datetime.strptime(e_date, "%Y%m%d").strftime("%Y.%m.%d")
     df = df[(df["start_date"] >= start_date) & (df["end_date"] <= end_date)]
@@ -119,7 +119,7 @@ def get_url(s_date,e_date):
                         page=page * 10 + 1)
             tmp_li.append([ticker, company_name, start_date, end_date, max_page, url])
     url_df = pd.DataFrame(tmp_li, columns=["ticker", "company_name", "start_date", "end_date", "max_page", "url"])
-    if not os.path.exists('max_page_url.csv'):
+    if not os.path.exists('../csvFile/max_page_url.csv'):
         url_df.to_csv('max_page_url.csv', index=False, mode='w', encoding='utf-8-sig')
     else:
         url_df.to_csv('max_page_url.csv', index=False, mode='a', encoding='utf-8-sig', header=False)
@@ -129,7 +129,7 @@ def get_url(s_date,e_date):
 def async_crawling_news_title(s_date,e_date):
 
     async def main():
-        df = pd.read_csv("max_page_url.csv")
+        df = pd.read_csv("../csvFile/max_page_url.csv")
         start_date = datetime.strptime(s_date, "%Y%m%d").strftime("%Y.%m.%d")
         end_date = datetime.strptime(e_date, "%Y%m%d").strftime("%Y.%m.%d")
         df = df[(df["start_date"] >= start_date) & (df["end_date"] <= end_date)]
@@ -146,7 +146,7 @@ def async_crawling_news_title(s_date,e_date):
 
         res = sum(res, [])
         df = pd.DataFrame(res, columns=["company_name","title","provider","date","rink"])
-        if not os.path.exists('news_crawling.csv'):
+        if not os.path.exists('../csvFile/news_crawling.csv'):
             df.to_csv('news_crawling.csv', index=False, mode='w', encoding='utf-8-sig')
         else:
             df.to_csv('news_crawling.csv', index=False, mode='a', encoding='utf-8-sig', header=False)
@@ -187,7 +187,7 @@ def async_crawling_news_title(s_date,e_date):
     print(f"{end - start:.5f} sec")
 
 def crawling_news_title(s_date,e_date): #8만 페이지 4시간
-    df = pd.read_csv("max_page_url.csv")
+    df = pd.read_csv("../csvFile/max_page_url.csv")
     start_date = datetime.strptime(s_date, "%Y%m%d").strftime("%Y.%m.%d")
     end_date = datetime.strptime(e_date, "%Y%m%d").strftime("%Y.%m.%d")
     df = df[(df["start_date"] >= start_date) & (df["end_date"] <= end_date)]
@@ -220,7 +220,7 @@ def crawling_news_title(s_date,e_date): #8만 페이지 4시간
             rink = news.select_one('.news_tit')['href']
             result.append([company_name, title, provider, date, rink])
     df = pd.DataFrame(result,columns=["company_name", "title", "provider", "date", "rink"])
-    if not os.path.exists('news_crawling.csv'):
+    if not os.path.exists('../csvFile/news_crawling.csv'):
         df.to_csv('news_crawling.csv', index=False, mode='w', encoding='utf-8-sig')
     else:
         df.to_csv('news_crawling.csv', index=False, mode='a', encoding='utf-8-sig', header=False)
@@ -244,7 +244,7 @@ def crawling(start_date,end_date):
 
 
 # 3만, 8만
-df= pd.read_csv("news_crawling.csv")
+df= pd.read_csv("../csvFile/news_crawling.csv")
 # print(df.shape)
 # print(df["title"].isnull().sum())
 # print(df.iloc[-100:-1,1])
