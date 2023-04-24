@@ -47,7 +47,7 @@ titles_transformed = tfidfv.fit_transform(news_titles_kma)
 keyword_df = pd.DataFrame(columns=['title', 'keywords'])
 features = tfidfv.get_feature_names_out()
 
-for i in tqdm(range(4400,4440)):
+for i in tqdm(range(4405,4410)):
     title = [news_titles_kma[i]]
     title_transformed = titles_transformed[i].toarray()
     

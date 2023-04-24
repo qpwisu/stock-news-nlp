@@ -73,12 +73,11 @@ if __name__=="__main__":
         sentence_vectors = pickle.load(f)
     print('Successfully loaded sentence vectors!')
 
-    for idx in range(4400,4420):
+    for idx in range(4400,4405):
         print(idx)
         similarity_sentences = find_similar_sentences(model, idx, sentence_vectors, raw_sentences, n)
         if len(similarity_sentences) == 0:
             continue
-        print("원본 문장 - 형태소 분석 전: ",sentences2[idx])
         print("원본 문장: ", raw_sentences[idx])
         for i in range(n):
             print("--> ", similarity_sentences[i])
